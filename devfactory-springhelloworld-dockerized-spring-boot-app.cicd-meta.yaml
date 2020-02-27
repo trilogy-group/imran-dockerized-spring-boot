@@ -1,0 +1,72 @@
+navigator:
+    name: System Administrator
+    email: admin@admin.com
+tickets:
+    dockerTicket: '#TODO'
+    devSpacesTicket: '#TODO'
+companyName: DevFactory
+productName: SpringHelloWorld
+c4containerName: dockerized-spring-boot-app
+repoUrl: https://github.com/trilogy-group/imran-dockerized-spring-boot
+masterCicdProductYaml: '#TODO'
+githubTeamName: import-automation
+repoBranch: master
+needsLowLevelHardwareAccess: false
+needsDockerServer: false
+type: Deployable service
+buildAndDistribute:
+    techStack: Java
+    os: Ubuntu 16.04
+    toolchainVersion: OpenJDK jdk 8
+    runtimeVersion: ""
+    build:
+        tool: Gradle 5
+        preBuildCommand: echo Hello
+        buildCommand: gradle build
+    test:
+        utFramework: junit
+        testCommand: gradle test
+        coverageReport:
+            type: Cobertura
+            path: '#TODO'
+        testReport:
+            type: '#TODO'
+            path: '#TODO'
+    package:
+        tool: Gradle 5
+        command: echo skip
+        artifactDir: ./build/libs
+    distribution:
+        artifactUploadCommand: 'echo not upload '
+    requiresIntegrationTests: false
+deployment:
+    serviceName: helloworld-spring-app
+    overridableProps:
+        guiType: Web
+        ports:
+          - name: port1
+            number: "8080"
+            protocol: http
+            public: true
+        stickySessions: false
+        canUseLb: true
+        fixedNetworkIdentifier: false
+        provision:
+            os: Ubuntu 16.04
+            prepareEnvCommand: '#TODO'
+            command: '#TODO'
+            checkCommand: '#TODO'
+        install:
+            dockerized: true
+            runtimeEnv: '#TODO'
+            installCommand: '#TODO'
+        run:
+            os: Ubuntu 16.04
+            mode: doNothing
+            command: '#TODO'
+            userName: '#TODO'
+        deploymentCheck:
+            exec:
+                command: curl http://localhost:8080/
+    targets:
+      - name: Default
