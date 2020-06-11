@@ -1,0 +1,34 @@
+version: v1
+productName: SpringHelloWorld
+buildEnvVars:
+  - key: LANG
+    kind: config
+    value: C.UTF-8
+  - key: LC_ALL
+    kind: config
+    value: C.UTF-8
+  - key: JAVA_HOME
+    kind: config
+    value: /opt/java/openjdk-8u222-b10
+  - key: PATH
+    kind: config
+    value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/java/openjdk-8u222-b10/bin:/opt/gradle/gradle5/bin
+  - key: PIPELINE_INIT_COMMAND
+    kind: config
+    value: echo 'No init commands provided'
+build:
+    image: 652819854130.dkr.ecr.us-east-1.amazonaws.com/devhub/builder-xenial-gradle
+    platform: linux
+    preBuildCommand: echo Hello
+    buildCommand: gradle build
+test:
+    testCommand: gradle test
+package:
+    artifactRepoType: maven2
+    packageCommand: echo skip
+    artifactDir: ./build/libs
+    artifactUploadCommand: 'echo not upload '
+repoType: Deployable service
+release:
+    targetChartFile: helloworld-spring-app
+    dockerized: true

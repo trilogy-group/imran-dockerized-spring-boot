@@ -1,0 +1,53 @@
+version: v4.0
+navigator:
+  name: System Administrator
+  email: admin@admin.com
+repo:
+  companyName: DevFactory
+  productName: SpringHelloWorld
+  repoUrl: 'https://github.com/trilogy-group/imran-dockerized-spring-boot'
+  repoType: Deployable service
+  branch: master
+build:
+  techStack: Java
+  os: Ubuntu 16.04
+  toolchainVersion: OpenJDK jdk 8
+  tool: Gradle 5
+  preBuildCommand: echo Hello
+  buildCommand: gradle build
+test:
+  utFramework: junit
+  preTestCommand: null
+  testCommand: gradle test
+package:
+  packageTool: Gradle 5
+  packageCommand: echo skip
+  artifactDir: ./build/libs
+  artifactUploadCommand: 'echo not upload '
+deploy:
+  serviceName: helloworld-spring-app
+  deploymentCheck: '#ToBeFilled'
+  stickySessions: null
+  canUseLb: true
+  stablePersistence: null
+  fixedNetworkIdentifier: null
+ports:
+  - name: port1
+    number: '8080'
+    protocol: HTTP
+    public: true
+    path: /
+run:
+  dockerized: true
+  os: null
+  image: ''
+  runtimeEnv: '#TODO'
+  installCommand: '#TODO'
+  installDir: ''
+  runCommand: '#TODO'
+  userName: '#TODO'
+envs:
+  - name: qa
+    default: true
+    vars: []
+storage: []
